@@ -138,7 +138,7 @@ class Products extends StatelessWidget {
                         ),
                       ),
                       Image.network(
-                        product.images.first, // Use the imageUrl from the product
+                        product.images.first.replaceAll(RegExp(r'^\[\\?"|\\?"\]$'),''), // Use the imageUrl from the product
                         fit: BoxFit.cover, // Ensure the image fills the space while maintaining its aspect ratio
                         height: MediaQuery.of(context).size.height * 0.2, // Set height
                         loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
@@ -194,6 +194,7 @@ class Products extends StatelessWidget {
 
                       SizedBox(height: 5),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             'Size ',
@@ -217,6 +218,7 @@ class Products extends StatelessWidget {
                               );
                             }).toList(),
                           ),
+                          IconButton(onPressed: (){}, icon: Icon(Icons.favorite,color: Colors.deepOrangeAccent,))
                         ],
                       ),
                     ],
